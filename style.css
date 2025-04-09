@@ -1,0 +1,537 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+svg {
+  fill: currentColor;
+  height: 0.85rem;
+  width: auto;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+:root {
+  --color-primary-darkest: oklch(28.2% 0.133 323.78);
+  --color-primary-dark: oklch(40.5% 0.174 324.12);
+  --color-primary-darker: oklch(47.62% 0.22 323.84);
+  --color-primary: oklch(54.38% 0.255 324.02);
+  --color-primary-light: oklch(89.09% 0.095 324.05);
+  --color-primary-lighter: oklch(92.43% 0.06 324.32);
+  --color-primary-lightest: oklch(97.26% 0.014 325.68);
+  --color-gray-darkest: oklch(28.09% 0.038 262.78);
+  --color-gray-darker: oklch(56.39% 0.037 262.56);
+  --color-gray-dark: oklch(66.15% 0.034 263.43);
+  --color-gray: oklch(81.59% 0.024 264.43);
+  --color-gray-light: oklch(89.67% 0.015 264.49);
+  --color-gray-lighter: oklch(97.82% 0.003 247.86);
+  --color-gray-lightest: oklch(1 0 0);
+  --rhythm: 1.5em;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  grid-template-rows: auto 1fr auto;
+  word-break: auto-phrase;
+  min-height: 100dvh;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Noto Sans JP",
+    "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
+  line-height: var(--rhythm);
+  text-box: trim-both cap alphabetic;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.button {
+  padding-inline: 0.5lh;
+  padding-block: 0.25lh;
+  margin: 0.5lh;
+}
+
+.button.lesson-button {
+  background-color: var(--color-gray-lightest);
+  color: var(--color-primary);
+}
+
+.button.lesson-button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-gray-lightest);
+}
+
+.button.language-toggle {
+  color: var(--color-gray-lightest);
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.25lh;
+  }
+}
+
+.language-toggle:hover {
+  background-color: var(--color-primary);
+}
+
+.lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+
+  div {
+    height: calc(var(--rhythm) / 2);
+    position: relative;
+  }
+
+  div::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle line for high-DPI screens */
+  }
+}
+
+.campaigns footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  a {
+    background-color: var(--color-primary);
+    color: var(--color-gray-lightest);
+    text-decoration: none;
+  }
+}
+
+.top-nav-wrap {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* make sure it stays above other content */
+  background-color: var(--color-primary-dark);
+}
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+  color: inherit;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 800px;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+aside {
+  height: 16lh;
+  color: var(--color-gray-lightest);
+  --color-primary-dark-clear: oklch(0.23 0.09 325.01 / 0.67);
+  --color-primary-darker-clear: oklch(0.22 0.0928 324.2 / 0.5);
+
+  background-image: linear-gradient(
+      var(--color-primary-dark-clear),
+      var(--color-primary-darker-clear)
+    ),
+    url("images/kids-hip-hop-dancers.webp");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-weight: 600;
+
+  img {
+    max-width: 300px;
+  }
+}
+
+nav:is([aria-label="ソーシャルメディアリンク"]) {
+  order: 3;
+  background-color: var(--color-gray-lightest);
+
+  li {
+    margin: 0.5lh;
+    background-color: var(--color-gray-lightest);
+    transition: 0.3s;
+  }
+
+  li:hover {
+    background-color: var(--color-primary);
+  }
+
+  ul {
+    justify-content: center;
+  }
+
+  a {
+    height: 2lh;
+    width: 2lh;
+    display: block;
+    background-color: var(--color-primary);
+    mask: var(--svg);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: auto 1.5lh;
+    transition: 0.3s;
+  }
+
+  a:hover {
+    background-color: var(--color-gray-lightest);
+  }
+
+  a[data-social="tiktok"] {
+    --svg: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="100%" height="100%" display="block" ><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path  d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" ></path></svg>');
+  }
+
+  a[data-social="facebook"] {
+    --svg: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="100%" height="100%" display="block" ><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" ></path></svg>');
+  }
+
+  a[data-social="instagram"] {
+    --svg: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="100%" height="100%" display="block" ><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" ></path></svg>');
+  }
+}
+
+h1,
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-primary-dark);
+  margin-block-end: 0.5lh;
+  line-height: 1.25;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  flex: 1;
+
+  & section {
+    padding-block: 2lh;
+  }
+
+  & section:nth-child(odd) {
+    background-color: var(--color-primary-dark);
+  }
+
+  & section:nth-child(even) {
+    background-color: var(--color-primary-lightest);
+
+    & .container {
+      background-color: var(--color-primary-lightest);
+    }
+  }
+}
+
+p {
+  margin-block-end: 0.75lh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  text-decoration: none;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.jd-tiktok-embed {
+  aspect-ratio: 605 / 774;
+  max-width: 605px;
+  min-width: 325px;
+  width: 100%;
+  display: block;
+}
+
+.campaign-list {
+  display: flex;
+  gap: 1lh;
+  flex-direction: column;
+  margin-block-end: 2lh;
+
+  & li {
+    background-color: white;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03),
+      0px 3px 6px rgba(50, 18, 66, 0.139);
+    border-bottom-right-radius: 0.25lh;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    h3 {
+      background-color: var(--color-primary-darker);
+
+      color: var(--color-gray-lightest);
+      font-size: 1.25rem;
+      /* padding-inline-start: 0.5lh;
+      padding-inline-end: 2lh;
+      padding-block: 0.125lh; */
+      padding: 0.25lh;
+      padding-inline-end: 1lh;
+      font-style: italic;
+      clip-path: polygon(0 0, 0 100%, 95% 100%, 100% 0);
+      margin-block-end: 0;
+      border-top-left-radius: 0.25lh;
+    }
+
+    p {
+      padding: 0.75lh;
+      margin: 0;
+    }
+  }
+}
+.container {
+  width: auto;
+  max-width: 800px;
+  margin: 0 0.5lh;
+  background-color: var(--color-gray-lightest);
+  padding-block: 1lh;
+  padding-inline: 0.5lh;
+}
+
+.container:has(.jd-tiktok-embed) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body main .class-details {
+  background-color: var(--color-primary-lightest);
+
+  .container {
+    background-color: inherit;
+  }
+  article {
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-gray-lightest);
+    padding: 1lh;
+    margin-block-end: 1lh;
+
+    footer {
+      display: flex;
+      justify-content: start;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    footer a {
+      margin-inline-start: 0;
+    }
+
+    .details {
+      grid-column: span 2;
+
+      li {
+        list-style: disc;
+        margin-inline-start: 1lh;
+      }
+    }
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75lh;
+    margin-block-end: 1lh;
+  }
+
+  dt {
+    text-align: right;
+    color: var(--color-primary-darker);
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+}
+
+.button.otoiawase {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-gray-lightest);
+}
+
+.button.signup {
+  color: var(--color-gray-lightest);
+  background-color: var(--color-primary);
+}
+
+.instructors article {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: var(--color-gray-lightest);
+  margin-block-end: 2lh;
+  background-color: var(--color-primary-darkest);
+  gap: 0.125lh;
+
+  .bio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.125lh;
+  }
+
+  .introduction,
+  .instructor-name {
+    background-color: var(--color-gray-lightest);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2lh;
+    text-align: left;
+  }
+
+  span {
+    display: inline;
+  }
+}
+
+.access > .container {
+  address,
+  .map {
+    flex: 1 1 300px;
+  }
+
+  .location {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1lh;
+    margin-block: 1lh;
+  }
+  iframe {
+    width: 100%;
+  }
+}
+
+main + footer {
+  display: flex;
+  justify-content: center;
+  color: var(--color-gray-lightest);
+  background-color: var(--color-primary-darkest);
+  .container {
+    background-color: inherit;
+    width: 100%;
+    .button.otoiawase {
+      margin-inline-start: 0;
+      color: var(--color-primary-darkest);
+    }
+
+    h2,
+    a {
+      color: var(--color-gray-lightest);
+    }
+  }
+}
