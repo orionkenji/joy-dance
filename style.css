@@ -1,4 +1,4 @@
-/* last updated 20250409 2024 */
+/* last updated 20250409 2056 */
 *,
 *::before,
 *::after {
@@ -228,12 +228,17 @@ aside {
   align-items: center;
   padding: 20px;
   font-weight: 600;
+  text-align: center;
+  font-size: 1.25rem;
 
   img {
     max-width: 300px;
   }
 }
 
+h2[lang="en"] {
+  line-height: 1;
+}
 .social-links {
   background-color: var(--color-gray-lightest);
 
