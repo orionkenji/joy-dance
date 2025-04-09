@@ -276,68 +276,32 @@
             Hop、J-POP、K-POPスタイルを取り入れたダンスクラスは、単なるダンス以上のものを提供します。そこではお子様がダンスに対して情熱を持ってもらい、スキルを身に付け、友情を築くことができる育成環境を提供していきます。経験豊富なインストラクターがいるJoyコミュニティでは、お子様たちがダンスを通じて個人的成長、喜び、充実感を体験できるように全力でサポートいたします。
           </p>
           <!-- Tiktok Embed -->
-          <div class="jd-tiktok-embed" id="tiktokContainer">
-            <blockquote
-              class="tiktok-embed"
-              cite="https://www.tiktok.com/@joydanceclass/video/7374714954781347088"
-              data-video-id="7374714954781347088"
-              style="max-width: 605px; min-width: 325px"
+          <!-- Thumbnail trigger -->
+          <div class="tiktop-wrapper">
+            <div
+              id="openTiktok"
+              class="tiktok-thumbnail"
+              role="button"
+              tabindex="0"
+              aria-label="Play TikTok video"
             >
-              <section>
-                <a
-                  target="_blank"
-                  title="@joydanceclass"
-                  href="https://www.tiktok.com/@joydanceclass?refer=embed"
-                  >@joydanceclass</a
-                >
-                かわいい振り付けが話題の「Magnetic」✨🧲 JOY
-                ダンスクラスでは流行りのK-POPダンスを楽しく学べます！
-                【無料体験レッスン開催中】
-                <a
-                  title="joyダンス"
-                  target="_blank"
-                  href="https://www.tiktok.com/tag/joy%E3%83%80%E3%83%B3%E3%82%B9?refer=embed"
-                  >#JOYダンス</a
-                >
-                <a
-                  title="ダンス教室"
-                  target="_blank"
-                  href="https://www.tiktok.com/tag/%E3%83%80%E3%83%B3%E3%82%B9%E6%95%99%E5%AE%A4?refer=embed"
-                  >#ダンス教室</a
-                >
-                <a
-                  title="ダンス"
-                  target="_blank"
-                  href="https://www.tiktok.com/tag/%E3%83%80%E3%83%B3%E3%82%B9?refer=embed"
-                  >#ダンス</a
-                >
-                <a
-                  title="kpopカバーダンス"
-                  target="_blank"
-                  href="https://www.tiktok.com/tag/kpop%E3%82%AB%E3%83%90%E3%83%BC%E3%83%80%E3%83%B3%E3%82%B9?refer=embed"
-                  >#kpopカバーダンス</a
-                >
-                <a
-                  title="illit"
-                  target="_blank"
-                  href="https://www.tiktok.com/tag/illit?refer=embed"
-                  >#ILLIT</a
-                >
-                <a
-                  title="magnetic"
-                  target="_blank"
-                  href="https://www.tiktok.com/tag/magnetic?refer=embed"
-                  >#Magnetic</a
-                >
-                <a
-                  target="_blank"
-                  title="♬ Magnetic - ILLIT"
-                  href="https://www.tiktok.com/music/Magnetic-7348071107608659969?refer=embed"
-                  >♬ Magnetic - ILLIT</a
-                >
-              </section>
-            </blockquote>
-            <script async src="https://www.tiktok.com/embed.js"></script>
+              <img
+                src="/images/tiktok.avif"
+                alt="TikTok video thumbnail of dance class"
+                width="154"
+                height="330"
+              />
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div id="tiktokModal" class="modal" hidden aria-hidden="true">
+            <div class="modal-content" role="dialog" aria-modal="true">
+              <button id="closeTiktok" aria-label="Close video popup">
+                &times;
+              </button>
+              <div id="tiktokEmbedTarget"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -629,52 +593,90 @@
         <p>Copyright © 2024–Present Joy Entertainment</p>
       </div>
     </footer>
-
     <script>
-      const container = document.getElementById("tiktokContainer");
+      const openBtn = document.getElementById("openTiktok");
+      const closeBtn = document.getElementById("closeTiktok");
+      const modal = document.getElementById("tiktokModal");
+      const embedTarget = document.getElementById("tiktokEmbedTarget");
+
       let hasLoaded = false;
+      let lastFocusedElement = null;
 
       function loadTikTokEmbed() {
-        if (hasLoaded) return;
-        hasLoaded = true;
+        if (!hasLoaded) {
+          embedTarget.innerHTML = `
+            <blockquote class="tiktok-embed"
+              cite="https://www.tiktok.com/@joydanceclass/video/7374714954781347088"
+              data-video-id="7374714954781347088"
+              style="max-width: 605px; min-width: 325px;">
+              <section></section>
+            </blockquote>
+          `;
 
-        container.innerHTML = `
-          <blockquote class="tiktok-embed"
-            cite="https://www.tiktok.com/@joydanceclass/video/7374714954781347088"
-            data-video-id="7374714954781347088"
-            style="max-width: 605px; min-width: 325px;">
-            <section></section>
-          </blockquote>
-        `;
+          const script = document.createElement("script");
+          script.src = "https://www.tiktok.com/embed.js";
+          script.async = true;
+          document.body.appendChild(script);
 
-        const script = document.createElement("script");
-        script.src = "https://www.tiktok.com/embed.js";
-        script.async = true;
-        document.body.appendChild(script);
-
-        // Disconnect the observer if it's still active
-        if (observer) observer.disconnect();
+          hasLoaded = true;
+        }
       }
 
-      // Scroll-based lazy loading
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            loadTikTokEmbed();
-          }
-        },
-        {
-          rootMargin: "200px 0px", // Load before it hits the viewport
-          threshold: 0,
+      // 👉 Preload TikTok after 3 seconds
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          loadTikTokEmbed();
+        }, 3000);
+      });
+
+      function openModal() {
+        lastFocusedElement = document.activeElement;
+        modal.hidden = false;
+        modal.setAttribute("aria-hidden", "false");
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        modal.setAttribute("aria-hidden", "true");
+        setTimeout(() => {
+          modal.hidden = true;
+          embedTarget.innerHTML = "";
+          hasLoaded = false;
+        }, 300);
+
+        if (lastFocusedElement) lastFocusedElement.focus();
+      }
+
+      openBtn.addEventListener("click", openModal);
+      openBtn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal();
         }
-      );
+      });
 
-      observer.observe(container);
+      closeBtn.addEventListener("click", closeModal);
 
-      // Fallback: Load after 2 seconds if user hasn't scrolled
-      setTimeout(() => {
-        if (!hasLoaded) loadTikTokEmbed();
-      }, 2000);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+
+        // Accessibility: trap focus
+        if (modal.getAttribute("aria-hidden") === "false" && e.key === "Tab") {
+          const focusable = modal.querySelectorAll(
+            "button, [tabindex]:not([tabindex='-1'])"
+          );
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
     </script>
   </body>
 </html>

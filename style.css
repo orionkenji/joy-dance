@@ -556,3 +556,64 @@ main + footer {
     }
   }
 }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 1rem;
+  max-width: 650px;
+  width: 100%;
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+#closeTiktok {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.tiktop-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tiktok-thumbnail {
+  cursor: pointer;
+  margin-block-start: 2lh;
+}
+
+.tiktok-thumbnail img:first-child {
+  display: block;
+  width: 100%;
+  max-height: 650px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03),
+    0px 3px 6px rgba(50, 18, 66, 0.139);
+  transition: transform 0.3s ease;
+}
+
+.tiktok-thumbnail:hover img:first-child {
+  transform: scale(1.01);
+}
