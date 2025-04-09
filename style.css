@@ -210,7 +210,7 @@ nav ul {
 }
 
 aside {
-  height: 16lh;
+  height: clamp(60dvh, 16lh, 80dvh);
   color: var(--color-gray-lightest);
   --color-primary-dark-clear: oklch(0.23 0.09 325.01 / 0.67);
   --color-primary-darker-clear: oklch(0.22 0.0928 324.2 / 0.5);
