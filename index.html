@@ -276,32 +276,12 @@
             Hop、J-POP、K-POPスタイルを取り入れたダンスクラスは、単なるダンス以上のものを提供します。そこではお子様がダンスに対して情熱を持ってもらい、スキルを身に付け、友情を築くことができる育成環境を提供していきます。経験豊富なインストラクターがいるJoyコミュニティでは、お子様たちがダンスを通じて個人的成長、喜び、充実感を体験できるように全力でサポートいたします。
           </p>
           <!-- Tiktok Embed -->
-          <!-- Thumbnail trigger -->
-          <div class="tiktop-wrapper">
-            <div
-              id="openTiktok"
-              class="tiktok-thumbnail"
-              role="button"
-              tabindex="0"
-              aria-label="Play TikTok video"
+          <div class="jd-tiktok-embed">
+            <a
+              href="https://www.tiktok.com/@joydanceclass/video/7374714954781347088"
             >
-              <img
-                src="/images/tiktok.avif"
-                alt="TikTok video thumbnail of dance class"
-                width="154"
-                height="330"
-              />
-            </div>
-          </div>
-
-          <!-- Modal -->
-          <div id="tiktokModal" class="modal" hidden aria-hidden="true">
-            <div class="modal-content" role="dialog" aria-modal="true">
-              <button id="closeTiktok" aria-label="Close video popup">
-                &times;
-              </button>
-              <div id="tiktokEmbedTarget"></div>
-            </div>
+              <img src="/images/tiktok.avif" height="1375" width="642"
+            /></a>
           </div>
         </div>
       </section>
@@ -593,90 +573,5 @@
         <p>Copyright © 2024–Present Joy Entertainment</p>
       </div>
     </footer>
-    <script>
-      const openBtn = document.getElementById("openTiktok");
-      const closeBtn = document.getElementById("closeTiktok");
-      const modal = document.getElementById("tiktokModal");
-      const embedTarget = document.getElementById("tiktokEmbedTarget");
-
-      let hasLoaded = false;
-      let lastFocusedElement = null;
-
-      function loadTikTokEmbed() {
-        if (!hasLoaded) {
-          embedTarget.innerHTML = `
-            <blockquote class="tiktok-embed"
-              cite="https://www.tiktok.com/@joydanceclass/video/7374714954781347088"
-              data-video-id="7374714954781347088"
-              style="max-width: 605px; min-width: 325px;">
-              <section></section>
-            </blockquote>
-          `;
-
-          const script = document.createElement("script");
-          script.src = "https://www.tiktok.com/embed.js";
-          script.async = true;
-          document.body.appendChild(script);
-
-          hasLoaded = true;
-        }
-      }
-
-      // 👉 Preload TikTok after 3 seconds
-      window.addEventListener("load", () => {
-        setTimeout(() => {
-          loadTikTokEmbed();
-        }, 3000);
-      });
-
-      function openModal() {
-        lastFocusedElement = document.activeElement;
-        modal.hidden = false;
-        modal.setAttribute("aria-hidden", "false");
-        closeBtn.focus();
-      }
-
-      function closeModal() {
-        modal.setAttribute("aria-hidden", "true");
-        setTimeout(() => {
-          modal.hidden = true;
-          embedTarget.innerHTML = "";
-          hasLoaded = false;
-        }, 300);
-
-        if (lastFocusedElement) lastFocusedElement.focus();
-      }
-
-      openBtn.addEventListener("click", openModal);
-      openBtn.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openModal();
-        }
-      });
-
-      closeBtn.addEventListener("click", closeModal);
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeModal();
-
-        // Accessibility: trap focus
-        if (modal.getAttribute("aria-hidden") === "false" && e.key === "Tab") {
-          const focusable = modal.querySelectorAll(
-            "button, [tabindex]:not([tabindex='-1'])"
-          );
-          const first = focusable[0];
-          const last = focusable[focusable.length - 1];
-
-          if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          } else if (!e.shiftKey && document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
-      });
-    </script>
   </body>
 </html>
