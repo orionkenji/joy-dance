@@ -219,7 +219,7 @@ aside {
       var(--color-primary-dark-clear),
       var(--color-primary-darker-clear)
     ),
-    url("images/kids-hip-hop-dancers.webp");
+    url("images/kids-hip-hop-dancers.avif");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -234,8 +234,7 @@ aside {
   }
 }
 
-nav:is([aria-label="ソーシャルメディアリンク"]) {
-  order: 3;
+.social-links {
   background-color: var(--color-gray-lightest);
 
   li {
@@ -250,6 +249,10 @@ nav:is([aria-label="ソーシャルメディアリンク"]) {
 
   ul {
     justify-content: center;
+  }
+
+  .about {
+    background-color: var(--color-gray-lightest);
   }
 
   a {
@@ -356,6 +359,11 @@ img {
   min-width: 325px;
   width: 100%;
   display: block;
+  background-color: var(--color-gray-lightest);
+
+  section {
+    background-color: var(--color-gray-lightest);
+  }
 }
 
 .campaign-list {
@@ -534,27 +542,4 @@ main + footer {
       color: var(--color-gray-lightest);
     }
   }
-}
-
-.tiktok-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 605px;
-  aspect-ratio: 605 / 755;
-  overflow: hidden;
-}
-
-.tiktok-placeholder {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-.tiktok-embed {
-  position: relative;
-  z-index: 2;
 }
