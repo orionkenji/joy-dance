@@ -236,6 +236,11 @@ aside {
   }
 }
 
+body main section.about,
+body main section.about > .container {
+  background-color: var(--color-gray-lightest);
+}
+
 h2[lang="en"] {
   line-height: 1;
 }
@@ -254,10 +259,6 @@ h2[lang="en"] {
 
   ul {
     justify-content: center;
-  }
-
-  .about {
-    background-color: var(--color-gray-lightest);
   }
 
   a {
@@ -359,15 +360,21 @@ img {
 }
 
 .jd-tiktok-embed {
-  aspect-ratio: 605 / 774;
-  max-width: 605px;
+  height: 755px;
   min-width: 325px;
-  width: 100%;
+  max-width: 605px;
   display: block;
-  background-color: var(--color-gray-lightest);
 
+  section,
+  iframe {
+    display: block;
+  }
+  iframe,
+  body,
+  div,
+  blockquote,
   section {
-    background-color: var(--color-gray-lightest);
+    background-color: var(--color-gray-lightest) !important;
   }
 }
 

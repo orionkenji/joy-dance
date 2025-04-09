@@ -283,7 +283,7 @@
             through dance.
           </p>
           <!-- Tiktok Embed -->
-          <div class="jd-tiktok-embed">
+          <div class="jd-tiktok-embed" id="tiktokContainer">
             <blockquote
               class="tiktok-embed"
               cite="https://www.tiktok.com/@joydanceclass/video/7374714954781347088"
@@ -651,13 +651,52 @@
         <p>Copyright © 2024–Present Joy Entertainment</p>
       </div>
     </footer>
+
     <script>
-      window.addEventListener("load", function () {
-        var script = document.createElement("script");
+      const container = document.getElementById("tiktokContainer");
+      let hasLoaded = false;
+
+      function loadTikTokEmbed() {
+        if (hasLoaded) return;
+        hasLoaded = true;
+
+        container.innerHTML = `
+          <blockquote class="tiktok-embed"
+            cite="https://www.tiktok.com/@joydanceclass/video/7374714954781347088"
+            data-video-id="7374714954781347088"
+            style="max-width: 605px; min-width: 325px;">
+            <section></section>
+          </blockquote>
+        `;
+
+        const script = document.createElement("script");
         script.src = "https://www.tiktok.com/embed.js";
         script.async = true;
         document.body.appendChild(script);
-      });
+
+        // Disconnect the observer if it's still active
+        if (observer) observer.disconnect();
+      }
+
+      // Scroll-based lazy loading
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadTikTokEmbed();
+          }
+        },
+        {
+          rootMargin: "200px 0px", // Load before it hits the viewport
+          threshold: 0,
+        }
+      );
+
+      observer.observe(container);
+
+      // Fallback: Load after 2 seconds if user hasn't scrolled
+      setTimeout(() => {
+        if (!hasLoaded) loadTikTokEmbed();
+      }, 2000);
     </script>
   </body>
 </html>
