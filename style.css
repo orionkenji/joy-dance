@@ -535,3 +535,26 @@ main + footer {
     }
   }
 }
+
+.tiktok-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 605px;
+  aspect-ratio: 605 / 755;
+  overflow: hidden;
+}
+
+.tiktok-placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.tiktok-embed {
+  position: relative;
+  z-index: 2;
+}

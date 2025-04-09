@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url>
+  <loc>https://www.kidshiphoptokyo.com/</loc>
+  <lastmod>2025-04-09</lastmod>
+  <xhtml:link
+    rel="alternate"
+    hreflang="ja"
+    href="https://www.kidshiphoptokyo.com/" />
+  <xhtml:link
+    rel="alternate"
+    hreflang="en"
+    href="https://www.kidshiphoptokyo.com/en/" />
+</url>
+<url>
+  <loc>https://www.kidshiphoptokyo.com/en/</loc>
+  <lastmod>2025-04-09</lastmod>
+  <xhtml:link
+    rel="alternate"
+    hreflang="ja"
+    href="https://www.kidshiphoptokyo.com/" />
+  <xhtml:link
+    rel="alternate"
+    hreflang="en"
+    href="https://www.kidshiphoptokyo.com/en/" />
+</url>
+</urlset>

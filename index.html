@@ -40,29 +40,91 @@
     />
 
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "JOYダンス教室 文京区",
-        "url": "https://www.kidshiphoptokyo.com",
-        "telephone": "+81-3-5684-0247",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "小石川5-3-2 2F",
-          "addressLocality": "文京区",
-          "addressRegion": "東京都",
-          "postalCode": "112-0002",
-          "addressCountry": "JP"
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "JOYダンス教室 文京区",
+          "@id": "https://www.kidshiphoptokyo.com/#joy-dance-studio",
+          "url": "https://www.kidshiphoptokyo.com",
+          "telephone": "+81-3-5684-0247",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "小石川5-3-2 2F",
+            "addressLocality": "文京区",
+            "addressRegion": "東京都",
+            "postalCode": "112-0002",
+            "addressCountry": "JP"
+          },
+          "description": "4歳から高校生までのお子様向けのダンス教室。HIPHOP・J-POP・K-POPなどの人気スタイルで、楽しみながら自信と自己表現力を育てる環境を提供します。",
+          "logo": "https://www.kidshiphoptokyo.com/images/joy-dance-logo.webp",
+          "sameAs": [
+            "https://www.instagram.com/joy_danceclass/",
+            "https://www.facebook.com/kidshiphoptokyo/",
+            "https://www.tiktok.com/@joydanceclass"
+          ]
         },
-        "description": "4歳から高校生までのお子様向けのダンス教室。HIPHOP・J-POP・K-POPなどの人気スタイルで、楽しみながら自信と自己表現力を育てる環境を提供します。",
-        "logo": "https://www.kidshiphoptokyo.com/images/joy-dance-logo.webp",
-        "sameAs": [
-          "https://www.instagram.com/joy_danceclass/",
-          "https://www.facebook.com/kidshiphoptokyo/",
-          "https://www.tiktok.com/@joydanceclass"
-        ]
-      }
+        {
+          "@context": "https://schema.org",
+          "@type": "Offer",
+          "name": "登録料無料キャンペーン",
+          "description": "期間限定で、ダンスクラスへの登録料が無料です！",
+          "price": "0",
+          "priceCurrency": "JPY",
+          "validFrom": "2025-04-09",
+          "validThrough": "2025-12-31",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@id": "https://www.kidshiphoptokyo.com/#joy-dance-studio"
+          }
+        },
+
+        {
+          "@context": "https://schema.org",
+          "@type": "Offer",
+          "name": "初回限定 無料体験レッスン",
+          "description": "初めてのお客様限定で、無料体験レッスンを実施中！お子様は同年代の友達と一緒にクラスを楽しみ、先生のサポートを受けながら、クラスの流れを体験できます。",
+          "price": "0",
+          "priceCurrency": "JPY",
+          "validFrom": "2025-04-09",
+          "validThrough": "2025-12-31",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@id": "https://www.kidshiphoptokyo.com/#joy-dance-studio"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Offer",
+          "name": "お友達・ご家族紹介キャンペーン",
+          "description": "友達やご家族と一緒に参加、または紹介していただくと、お二方ともに¥5,000クーポンをプレゼント！",
+          "price": "0",
+          "priceCurrency": "JPY",
+          "validFrom": "2025-04-09",
+          "validThrough": "2025-12-31",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@id": "https://www.kidshiphoptokyo.com/#joy-dance-studio"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Offer",
+          "name": "SNSフォローキャンペーン",
+          "description": "TikTokとInstagramを両方フォローすると、¥1,000クーポンをプレゼント！",
+          "price": "0",
+          "priceCurrency": "JPY",
+          "validFrom": "2025-04-09",
+          "validThrough": "2025-12-31",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@id": "https://www.kidshiphoptokyo.com/#joy-dance-studio"
+          }
+        }
+      ]
     </script>
+
+    <link rel="canonical" href="https://www.kidshiphoptokyo.com/" />
     <link rel="stylesheet" href="/style.css" />
 
     <link href="/favicon.png" rel="shortcut icon" type="image/x-icon" />
@@ -393,7 +455,13 @@
 
           <article>
             <div class="bio">
-              <img src="/images/中溝健人.avif" loading="lazy" />
+              <img
+                src="/images/nakamizo-kento.avif"
+                alt="ダンス講師の中溝健人"
+                loading="lazy"
+                width="1000"
+                height="1000"
+              />
               <section class="instructor-name">
                 <h3>中溝健人</h3>
                 <p><strong>ダンス講師</strong></p>
@@ -418,8 +486,10 @@
             <div class="bio">
               <img
                 src="/images/hana-dance-instructor.avif"
-                alt=""
+                alt="ダンス講師のハナ"
                 loading="lazy"
+                width="1000"
+                height="1000"
               />
 
               <section class="instructor-name">
@@ -436,7 +506,13 @@
 
           <article>
             <div class="bio">
-              <img src="/images/preston-director.avif" alt="" loading="lazy" />
+              <img
+                src="/images/preston-director.avif"
+                alt="プロダクションマネージャーのプレストン"
+                loading="lazy"
+                width="1000"
+                height="1000"
+              />
               <section class="instructor-name">
                 <h3>プレストン</h3>
                 <p><strong>プロダクションマネージャー</strong></p>
@@ -468,8 +544,10 @@
             <img
               class="map"
               src="/images/joy-studios-map.avif"
-              alt=""
+              alt="東京都文京区にあるJOYダンススタジオの地図"
               loading="lazy"
+              width="1000"
+              height="644"
             />
           </div>
           <iframe
