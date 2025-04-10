@@ -1,4 +1,4 @@
-/* last updated 20250410 0112 */
+/* last updated 20250410 1358 */
 *,
 *::before,
 *::after {
@@ -393,7 +393,7 @@ img {
     align-items: start;
 
     h3 {
-      background-color: var(--color-primary-darker);
+      background-color: var(--color-primary-darkest);
 
       color: var(--color-gray-lightest);
       font-size: 1.25rem;
