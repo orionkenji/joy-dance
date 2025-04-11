@@ -1,4 +1,4 @@
-/* last updated 20250411 1000 */
+/* last updated 20250411 1137 */
 *,
 *::before,
 *::after {
@@ -211,28 +211,57 @@ nav ul {
 
 aside {
   height: clamp(60dvh, 16lh, 80dvh);
-  color: var(--color-gray-lightest);
-  --color-primary-dark-clear: oklch(0.23 0.09 325.01 / 0.67);
-  --color-primary-darker-clear: oklch(0.22 0.0928 324.2 / 0.5);
-
-  background-image: linear-gradient(
-      var(--color-primary-dark-clear),
-      var(--color-primary-darker-clear)
-    ),
-    url("images/kids-hip-hop-dancers.avif");
+  position: relative;
+  background-image: url("images/kids-hip-hop-dancers.avif");
   background-size: cover;
   background-position: center;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  font-weight: 600;
-  text-align: center;
   font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-gray-lightest);
+  text-align: center;
+}
 
-  img {
-    max-width: 300px;
+aside img {
+  max-width: 300px;
+}
+
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    300deg,
+    oklch(0.62 0.1239 230.61),
+    oklch(0.55 0.2589 323.82),
+    oklch(0.46 0.2872 267.88)
+  );
+  background-size: 180% 180%;
+  animation: gradient-animation 24s ease infinite;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+
+aside > *:not(.gradient-overlay) {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -247,21 +276,21 @@ h2[lang="en"] {
 .social-links {
   background-color: var(--color-gray-lightest);
 
-  li {
+  & li {
     margin: 0.5lh;
     background-color: var(--color-gray-lightest);
     transition: 0.3s;
   }
 
-  li:hover {
+  & li:hover {
     background-color: var(--color-primary);
   }
 
-  ul {
+  & ul {
     justify-content: center;
   }
 
-  a {
+  & a {
     height: 2lh;
     width: 2lh;
     display: block;
@@ -273,19 +302,19 @@ h2[lang="en"] {
     transition: 0.3s;
   }
 
-  a:hover {
+  & a:hover {
     background-color: var(--color-gray-lightest);
   }
 
-  a[data-social="tiktok"] {
+  & a[data-social="tiktok"] {
     --svg: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="100%" height="100%" display="block" ><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path  d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" ></path></svg>');
   }
 
-  a[data-social="facebook"] {
+  & a[data-social="facebook"] {
     --svg: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="100%" height="100%" display="block" ><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" ></path></svg>');
   }
 
-  a[data-social="instagram"] {
+  & a[data-social="instagram"] {
     --svg: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="100%" height="100%" display="block" ><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" ></path></svg>');
   }
 }
@@ -363,7 +392,7 @@ img {
   display: flex;
   justify-content: center;
 
-  img {
+  & img {
     max-height: 21lh;
     width: auto;
     margin-block-start: 2lh;
@@ -372,7 +401,7 @@ img {
     transition: transform 0.2s ease;
   }
 
-  a:hover img {
+  & a:hover img {
     transform: scale(1.01);
   }
 }
@@ -392,7 +421,7 @@ img {
     flex-direction: column;
     align-items: start;
 
-    h3 {
+    & h3 {
       background-color: var(--color-primary-darker);
 
       color: var(--color-gray-lightest);
@@ -408,7 +437,7 @@ img {
       border-top-left-radius: 0.25lh;
     }
 
-    p {
+    & p {
       padding: 0.75lh;
       margin: 0;
     }
@@ -432,44 +461,44 @@ img {
 body main .class-details {
   background-color: var(--color-primary-lightest);
 
-  .container {
+  & .container {
     background-color: inherit;
   }
-  article {
+  & article {
     border: 1px solid var(--color-primary);
     background-color: var(--color-gray-lightest);
     padding: 1lh;
     margin-block-end: 1lh;
 
-    footer {
+    & footer {
       display: flex;
       justify-content: start;
       flex-direction: column;
       align-items: flex-start;
     }
 
-    footer a {
+    & footer a {
       margin-inline-start: 0;
     }
 
-    .details {
+    & .details {
       grid-column: span 2;
 
-      li {
+      & li {
         list-style: disc;
         margin-inline-start: 1lh;
       }
     }
   }
 
-  dl {
+  & dl {
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 0.75lh;
     margin-block-end: 1lh;
   }
 
-  dt {
+  & dt {
     text-align: right;
     color: var(--color-primary-darker);
     font-weight: 600;
@@ -497,14 +526,14 @@ body main .class-details {
   background-color: var(--color-primary-darkest);
   gap: 0.125lh;
 
-  .bio {
+  & .bio {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 0.125lh;
   }
 
-  .introduction,
-  .instructor-name {
+  & .introduction,
+  & .instructor-name {
     background-color: var(--color-gray-lightest);
     display: flex;
     flex-direction: column;
@@ -514,24 +543,24 @@ body main .class-details {
     text-align: left;
   }
 
-  span {
+  & span {
     display: inline;
   }
 }
 
 .access > .container {
-  address,
-  .map {
+  & address,
+  & .map {
     flex: 1 1 300px;
   }
 
-  .location {
+  & .location {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1lh;
     margin-block: 1lh;
   }
-  iframe {
+  & iframe {
     width: 100%;
   }
 }
@@ -549,9 +578,18 @@ main + footer {
       color: var(--color-primary-darkest);
     }
 
-    h2,
-    a {
+    & h2,
+    & a {
       color: var(--color-gray-lightest);
     }
   }
+}
+
+aside::before {
+  z-index: 0;
+}
+
+aside > * {
+  position: relative;
+  z-index: 1;
 }
